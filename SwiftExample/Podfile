@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '8.0'
+use_frameworks!
+
+target 'SwiftExample' do
+  pod 'QuickTableViewController', '~> 0.8'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  target 'SwiftExampleTests' do
+      inherit! :search_paths
+      pod 'Quick', '~> 1.2.0'
+      pod 'Nimble', '~> 7.0.2'
+  end
+end

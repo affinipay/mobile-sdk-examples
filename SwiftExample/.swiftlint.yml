@@ -1,0 +1,10 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+- Pods/BRYSerialAnimationQueue
+- Pods/FBSnapshotTestCase
+- Pods/Nimble
+- Pods/Nimble-Snapshots
+- Pods/Quick
+- Pods/QuickTableViewController
+- Pods/SSBouncyButton
+- Pods/UIColor-Hex
+- Pods/UIImage+BetterAdditions

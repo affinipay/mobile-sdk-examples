@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="8dp"
+    tools:context="com.affinipay.LoginAccountView"
+    >
+
+  <Button
+      android:id="@+id/get_paid"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/footer_button_vertical_padding"
+      android:paddingBottom="@dimen/footer_button_vertical_padding"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/button"
+      android:gravity="center"
+      android:text="@string/get_paid"
+      android:textColor="@android:color/white"
+      android:textSize="@dimen/footer_button_text_size"
+      android:enabled="false"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/err_message"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/public_key_unknown"
+      android:textColor="@color/errorRed"
+      android:layout_marginBottom="30dp"
+      app:layout_constraintBottom_toTopOf="@+id/get_paid"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      />
+  <Spinner
+      android:id="@+id/account_spinner"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toTopOf="@+id/err_message"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+</android.support.constraint.ConstraintLayout>

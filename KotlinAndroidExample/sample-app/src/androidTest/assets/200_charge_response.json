@@ -1,0 +1,30 @@
+{
+  "attributes": {
+    "account_id": "AAAAAAAAAA-1111111",
+    "amount": 29,
+    "amount_refunded": 0,
+    "authorization_code": "AAADFD",
+    "auto_capture": true,
+    "avs_result": "ADDRESS_AND_POSTAL_CODE",
+    "created": "2017-10-26T15:14:14.392Z",
+    "currency": "USD",
+    "cvv_result": "MATCHED",
+    "id": "AAAAAAAAA-123123123",
+    "method": {
+      "card_type": "VISA",
+      "email": "devsupport@affinipay.com",
+      "exp_month": 12,
+      "exp_year": 2022,
+      "fingerprint": "XXXXXXXXXXXXXXXXXXX",
+      "number": "************4242",
+      "postal_code": "11111",
+      "type": "card"
+    },
+    "modified": "2017-10-26T15:14:14.449Z",
+    "status": "AUTHORIZED",
+    "success": true,
+    "type": "CHARGE"
+  },
+  "errors": {},
+  "messages": []
+}

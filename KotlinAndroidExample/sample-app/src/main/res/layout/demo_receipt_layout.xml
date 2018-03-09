@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="8dp"
+    >
+
+  <TextView
+      android:id="@+id/paymentReceived"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:layout_marginTop="8dp"
+      android:text="Payment Received!"
+      android:textColor="@color/greySubheader"
+      android:textSize="32sp"
+      app:layout_constraintBottom_toTopOf="@+id/chargeAmount"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/chargeAmount"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:text="$25.34"
+      android:textColor="@color/successGreen"
+      android:textSize="56sp"
+      app:layout_constraintBottom_toTopOf="@+id/toText"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/toText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:text="to"
+      android:textColor="@color/greySubheader"
+      android:textSize="24sp"
+      app:layout_constraintBottom_toTopOf="@+id/accountName"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      />
+
+  <TextView
+      android:id="@+id/accountName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="30dp"
+      android:gravity="center"
+      android:text="Display name for the merchant who is receiving this payment"
+      android:textColor="@color/colorPrimary"
+      android:textSize="24sp"
+      app:layout_constraintBottom_toTopOf="@id/doneButton"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      />
+
+  <Button
+      android:id="@+id/doneButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/footer_button_vertical_padding"
+      android:paddingBottom="@dimen/footer_button_vertical_padding"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/button"
+      android:gravity="center"
+      android:text="Done"
+      android:textSize="@dimen/footer_button_text_size"
+      android:textColor="@android:color/white"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      />
+
+</android.support.constraint.ConstraintLayout>
