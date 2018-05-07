@@ -73,7 +73,7 @@ class MainViewController: UIViewController {
 
             // Show customer Information entry
             _ = self?.showCustomerInfo(fromVC: fromVC)
-        }) as? AFPAmountVC
+        })
 
         // Add cancel button
         self.afpAmountVC?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(dismissAmountSelection))
@@ -92,7 +92,7 @@ class MainViewController: UIViewController {
         self.afpCustomerInfoVC = AffiniPaySDK.getCustomerInfoVC(afpCustomerInput!, next: { [weak self](result) in
             // Show card entry
             self?.showCardEntry(fromVC: fromVC, customerInfo: result)
-        }) as? AFPCustomerInfoVC
+        })
         self.afpCustomerInfoVC?.title = "Customer Info"
 
         // Add cancel button
@@ -109,7 +109,7 @@ class MainViewController: UIViewController {
         let afpChargeInput = AFPChargeInput(publicKey: getPublicKey(), amount: getAmount(), customerInfo: customerInfo!)
 
         // Instantiate card entry view controller
-        self.afpCardEntryVC = AffiniPaySDK.getCardEntryVC(afpChargeInput!, next: { [weak self](chargeResult, completionCallback) in
+        self.afpCardEntryVC = AffiniPaySDK.getCardEntryVC(afpChargeInput!, nextWithCompletionBlock: { [weak self](chargeResult, completionCallback) in
             // Check card entry return values
             guard let amountString = chargeResult?.amount else { assert(false, "Invalid amount"); return }
             guard let tokenId = chargeResult?.oneTimeToken else { assert(false, "Invalid charge token"); return }
@@ -162,7 +162,7 @@ class MainViewController: UIViewController {
                 print("result \(String(describing: result))")
                 print("error \(String(describing: error))")
             })
-        }) as? AFPCardEntryVC
+        })
         self.afpCardEntryVC?.title = "Charge"
 
         // Add cancel button
@@ -172,31 +172,12 @@ class MainViewController: UIViewController {
         self.transactionNav?.pushViewController(self.afpCardEntryVC!, animated: true)
     }
 
-    func showAmountSelectionDelme(fromVC: UIViewController) -> UIViewController {
-        // Instantiate amount selection view controller
-        let amountVC = AffiniPaySDK.getAmountVC({ [weak self](amountResult) in
-            // Store amount
-            self?.amount = amountResult?.amount
-
-            // Show customer Information entry
-            _ = self?.showSignature(fromVC: fromVC, chargeId: nil, amount: nil, merchantName: nil)
-        })
-
-        // Add cancel button
-        amountVC?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(dismissTransaction))
-
-        // Present amount selection view controller
-        fromVC.present(transactionNav!, animated: true, completion: nil)
-
-        return amountVC!
-    }
-
     func showSignature(fromVC: UIViewController, chargeId: String?, amount: String?, merchantName: String?) -> UIViewController {
         // Create input
-        let afpSignatureInput = AFPSignatureInput(transcationId: chargeId, amount: amount, merchant: merchantName)
+        let afpSignatureInput = AFPSignatureInput(transactionId: chargeId, amount: amount, merchant: merchantName)
 
         // Instantiate signature view controller
-        self.afpSignatureVC = AffiniPaySDK.getSignatureVC(afpSignatureInput!, next: { [weak self](signatureResult, completionCallback) in
+        self.afpSignatureVC = AffiniPaySDK.getSignatureVC(afpSignatureInput!, nextWithCompletionBlock: { [weak self](signatureResult, completionCallback) in
             print("Signature received: \(String(describing: signatureResult?.signatureString))")
 
             // Create a charge on the backend using a one token, account id, and amnout
@@ -228,11 +209,8 @@ class MainViewController: UIViewController {
                 }
             })
 
-        }) as? AFPSignatureVC
+        })
         self.afpSignatureVC?.title = "Sign"
-
-        // Add cancel button
-        // self.afpSignatureVC?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(dismissSignature))
 
         // Push signature view controller
         self.transactionNav?.pushViewController(self.afpSignatureVC!, animated: true)
@@ -311,7 +289,7 @@ class MainViewController: UIViewController {
     }
 
     func getCustomerInfoInput() -> AFPCustomerInfoInput? {
-        let customerInfoInput = AFPCustomerInfoInput(array: [AFPCustomerInfoType.name.rawValue, AFPCustomerInfoType.address1.rawValue, AFPCustomerInfoType.postalcode.rawValue])
+        let customerInfoInput = AFPCustomerInfoInput(mandatoryFields: [AFPCustomerInfoType.name.rawValue, AFPCustomerInfoType.address1.rawValue, AFPCustomerInfoType.postalcode.rawValue])
         return customerInfoInput
     }
 
