@@ -1,6 +1,6 @@
 import UIKit
 import AffiniPaySDK
-import AffiniPaySDK.AFPChargeInput
+import AffiniPaySDK.AFPChargeParams
 import AffiniPaySDK.AFPChargeResult
 import AffiniPaySDK.AFPNavigationController
 
@@ -91,7 +91,7 @@ class MainViewController: UIViewController {
         // Instantiate customer information view controller
         self.afpCustomerInfoVC = AffiniPaySDK.getCustomerInfoVC(afpCustomerInput!, next: { [weak self](result) in
             // Show card entry
-            self?.showCardEntry(fromVC: fromVC, customerInfo: result)
+            self?.showCardEntry(fromVC: fromVC, customerInfoResult: result)
         })
         self.afpCustomerInfoVC?.title = "Customer Info"
 
@@ -104,9 +104,9 @@ class MainViewController: UIViewController {
         return self.afpCustomerInfoVC!
     }
 
-    func showCardEntry(fromVC: UIViewController, customerInfo: AFPCustomerInfoResult?) {
+    func showCardEntry(fromVC: UIViewController, customerInfoResult: AFPCustomerInfoResult?) {
         // Create input
-        let afpChargeInput = AFPChargeInput(publicKey: getPublicKey(), amount: getAmount(), customerInfo: customerInfo!)
+        let afpChargeInput = AFPChargeParams(publicKey: getPublicKey(), amount: getAmount(), customerInfo: customerInfoResult?.customerInfo)
 
         // Instantiate card entry view controller
         self.afpCardEntryVC = AffiniPaySDK.getCardEntryVC(afpChargeInput!, nextWithCompletionBlock: { [weak self](chargeResult, completionCallback) in
@@ -174,7 +174,7 @@ class MainViewController: UIViewController {
 
     func showSignature(fromVC: UIViewController, chargeId: String?, amount: String?, merchantName: String?) -> UIViewController {
         // Create input
-        let afpSignatureInput = AFPSignatureInput(transactionId: chargeId, amount: amount, merchant: merchantName)
+        let afpSignatureInput = AFPSignatureParams(transactionId: chargeId, amount: amount, merchant: merchantName)
 
         // Instantiate signature view controller
         self.afpSignatureVC = AffiniPaySDK.getSignatureVC(afpSignatureInput!, nextWithCompletionBlock: { [weak self](signatureResult, completionCallback) in
@@ -288,8 +288,8 @@ class MainViewController: UIViewController {
         return amount
     }
 
-    func getCustomerInfoInput() -> AFPCustomerInfoInput? {
-        let customerInfoInput = AFPCustomerInfoInput(mandatoryFields: [AFPCustomerInfoType.name.rawValue, AFPCustomerInfoType.address1.rawValue, AFPCustomerInfoType.postalcode.rawValue])
+    func getCustomerInfoInput() -> AFPCustomerInfoParams? {
+        let customerInfoInput = AFPCustomerInfoParams(mandatoryFields: [AFPCustomerInfoType.name.rawValue, AFPCustomerInfoType.address1.rawValue, AFPCustomerInfoType.postalcode.rawValue])
         return customerInfoInput
     }
 

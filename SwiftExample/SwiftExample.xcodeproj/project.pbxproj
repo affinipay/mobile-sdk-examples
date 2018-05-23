@@ -188,6 +188,7 @@
 				FB482F4922489DB996A91847 /* [CP] Copy Pods Resources */,
 				7845DD0F202CE8EC0072D674 /* CopyFiles */,
 				780359342048D8CA00BD239C /* ShellScript */,
+				78B01D0420B62B620030C6BE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -328,6 +329,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		78B01D0420B62B620030C6BE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=$TARGET_BUILD_DIR/$WRAPPER_NAME/Frameworks/AffiniPaySDK.framework/Scripts/remove_unused_archs.sh\nsource $FILE";
 		};
 		8539D65918BB3F1B870BB76E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
