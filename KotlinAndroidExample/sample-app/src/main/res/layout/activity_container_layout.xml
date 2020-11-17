@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AffiniTheme"
+    >
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/topContainer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/drawable_rectangle"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:visibility="gone"
+      app:layout_constraintStart_toStartOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toptext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+      <ImageView
+          android:id="@+id/ivBack"
+          android:layout_width="wrap_content"
+          android:layout_height="32dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="10dp"
+          android:src="@drawable/ic_action_back"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/textView"
+          android:layout_width="wrap_content"
+          android:layout_height="32dp"
+          android:layout_marginTop="8dp"
+          android:fontFamily="@font/opensans_regular"
+          android:gravity="center_vertical"
+          android:text="@string/card_entry"
+          android:textColor="#ffffff"
+          android:textSize="17dp"
+          app:layout_constraintEnd_toStartOf="parent"
+          app:layout_constraintStart_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/tvCancel"
+          android:layout_width="wrap_content"
+          android:layout_height="32dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:background="@color/colorPrimary"
+          android:fontFamily="@font/opensans_regular"
+          android:gravity="center_vertical"
+          android:text="@string/cancel"
+          android:textColor="#ffffff"
+          android:textSize="17dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  <FrameLayout
+      android:id="@+id/fragment_container"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
+
+</LinearLayout>

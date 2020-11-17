@@ -18,6 +18,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>affinipayGatewayUrl</key>
+	<string>https://api.chargeio.com</string>
 	<key>affinipaySdkBaseUrl</key>
 	<string>http://127.0.0.1:9292</string>
 	<key>NSMicrophoneUsageDescription</key>

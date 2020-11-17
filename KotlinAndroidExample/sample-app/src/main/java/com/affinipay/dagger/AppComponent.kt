@@ -3,7 +3,6 @@ package com.affinipay.dagger
 import com.affinipay.App
 import com.affinipay.ContainerActivity
 import com.affinipay.LoginAccountView
-import com.affinipay.SignatureActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,8 +14,5 @@ interface AppComponent {
 
   fun inject(target: ContainerActivity)
 
-  fun inject(target: SignatureActivity)
-
   fun inject(target: LoginAccountView)
-
 }

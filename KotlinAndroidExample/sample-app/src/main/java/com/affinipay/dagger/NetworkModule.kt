@@ -1,6 +1,6 @@
 package com.affinipay.dagger
 
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.affinipay.BuildConfig
 import com.affinipay.ChargeModel
 import com.affinipay.LoginAccountModel

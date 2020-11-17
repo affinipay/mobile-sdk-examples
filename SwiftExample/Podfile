@@ -9,6 +9,6 @@ target 'SwiftExample' do
   target 'SwiftExampleTests' do
       inherit! :search_paths
       pod 'Quick', '~> 1.2.0'
-      pod 'Nimble', '~> 7.0.2'
+      pod 'Nimble', '~> 7.0.3'
   end
 end

@@ -1,7 +1,7 @@
 package com.affinipay
 
 import android.content.Context
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.affinipay.dagger.AppComponent
 import com.affinipay.dagger.DaggerAppComponent
 import com.affinipay.dagger.NetworkModule

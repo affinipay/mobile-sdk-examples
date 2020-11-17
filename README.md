@@ -1,6 +1,6 @@
 ## Mobile SDK Examples
 
-Refer to the README of each example for it's description, configuration, execution, author, and license details.
+Refer to the README of each example for its description, configuration, execution, author, and license details.
 
 * [Swift Example](./SwiftExample/README.md)
 * [Kotlin Example](./KotlinAndroidExample/README.md)
@@ -13,4 +13,4 @@ Contributions in the form of GitHub pull requests are welcome. Please adhere to 
   - Any contributions must be licensed under the GPL license.
 
 ## License
-  [MIT](./LICENSE) Â© AffiniPay LLC
+  [MIT](./LICENSE) © AffiniPay LLC

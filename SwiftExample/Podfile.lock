@@ -9,9 +9,17 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - Nimble (~> 7.0.2)
+  - Nimble (~> 7.0.3)
   - Quick (~> 1.2.0)
   - QuickTableViewController (~> 0.8)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Crashlytics
+    - Fabric
+    - Nimble
+    - Quick
+    - QuickTableViewController
 
 SPEC CHECKSUMS:
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -20,6 +28,6 @@ SPEC CHECKSUMS:
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   QuickTableViewController: 13ab5baafb4e96544a86bdf3ecdd2f824bd888af
 
-PODFILE CHECKSUM: bdbc9ab6f843d85221894ffbe4b457d918827800
+PODFILE CHECKSUM: 18c14acae742c35e451a5a1bfba26e84a32f2b3e
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.9.3

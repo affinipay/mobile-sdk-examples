@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02F00316255131C900CE3941 /* AffiniPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F00315255131C900CE3941 /* AffiniPaySDK.framework */; };
+		02F003192551324B00CE3941 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F003172551324B00CE3941 /* SignatureViewController.swift */; };
+		02F0031A2551324B00CE3941 /* ClientDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F003182551324B00CE3941 /* ClientDetailsController.swift */; };
+		02F003202551373000CE3941 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F0031C2551373000CE3941 /* OpenSans-SemiBold.ttf */; };
+		02F003212551373000CE3941 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F0031D2551373000CE3941 /* OpenSans-LightItalic.ttf */; };
+		02F003222551373000CE3941 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F0031E2551373000CE3941 /* OpenSans-Bold.ttf */; };
+		02F003232551373000CE3941 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F0031F2551373000CE3941 /* OpenSans-Regular.ttf */; };
 		6833871CBB281509C6BF4550 /* Pods_SwiftExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD78A738C7F878A30966A01 /* Pods_SwiftExample.framework */; };
 		780359362048D98B00BD239C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 780359352048D98A00BD239C /* .swiftlint.yml */; };
+		78446F4820AE3A0A00873242 /* AffiniPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7852793920AA352D002F4C89 /* AffiniPaySDK.framework */; };
+		78446F4920AE3A6500873242 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7845DAAE202BEAF80072D674 /* Info.plist */; };
+		78446F7820AE3D3E00873242 /* AffiniPaySDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7852793920AA352D002F4C89 /* AffiniPaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7845DA98202BEAF80072D674 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7845DA97202BEAF80072D674 /* AppDelegate.swift */; };
 		7845DA9D202BEAF80072D674 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7845DA9B202BEAF80072D674 /* Main.storyboard */; };
 		7845DAAD202BEAF80072D674 /* SwiftExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7845DAAC202BEAF80072D674 /* SwiftExampleTests.swift */; };
@@ -20,10 +30,8 @@
 		7845DD12202CE9E40072D674 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7845DD11202CE9E40072D674 /* Images.xcassets */; };
 		7845DD1F202D19660072D674 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7845DABC202BECC00072D674 /* NetworkController.swift */; };
 		7845DD20202D19680072D674 /* NetworkControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7845DABA202BECC00072D674 /* NetworkControllerImpl.swift */; };
-		784B1159204A20A000BB8716 /* AffiniPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784B1158204A20A000BB8716 /* AffiniPaySDK.framework */; };
-		784B115A204A20B400BB8716 /* AffiniPaySDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 784B1158204A20A000BB8716 /* AffiniPaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		784B115B204A225600BB8716 /* AffiniPaySDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 784B1158204A20A000BB8716 /* AffiniPaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		784B115C204A227400BB8716 /* AffiniPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784B1158204A20A000BB8716 /* AffiniPaySDK.framework */; };
+		7852793A20AA352D002F4C89 /* AffiniPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7852793920AA352D002F4C89 /* AffiniPaySDK.framework */; };
+		7852793B20AA3539002F4C89 /* AffiniPaySDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7852793920AA352D002F4C89 /* AffiniPaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE9133F6EDAD6123AFD4F555 /* Pods_SwiftExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0923F50750FA61805E2B52 /* Pods_SwiftExampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				784B115A204A20B400BB8716 /* AffiniPaySDK.framework in CopyFiles */,
+				7852793B20AA3539002F4C89 /* AffiniPaySDK.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,13 +62,20 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				784B115B204A225600BB8716 /* AffiniPaySDK.framework in CopyFiles */,
+				78446F7820AE3D3E00873242 /* AffiniPaySDK.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02F00315255131C900CE3941 /* AffiniPaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AffiniPaySDK.framework; sourceTree = "<group>"; };
+		02F003172551324B00CE3941 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
+		02F003182551324B00CE3941 /* ClientDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientDetailsController.swift; sourceTree = "<group>"; };
+		02F0031C2551373000CE3941 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		02F0031D2551373000CE3941 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		02F0031E2551373000CE3941 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		02F0031F2551373000CE3941 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		0AE2D8B4054FEF6F73B91449 /* Pods-SwiftExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftExample/Pods-SwiftExample.release.xcconfig"; sourceTree = "<group>"; };
 		6AD78A738C7F878A30966A01 /* Pods_SwiftExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		780359352048D98A00BD239C /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
@@ -77,7 +92,7 @@
 		7845DABC202BECC00072D674 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		7845DABD202BECC00072D674 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7845DD11202CE9E40072D674 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		784B1158204A20A000BB8716 /* AffiniPaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AffiniPaySDK.framework; sourceTree = "<group>"; };
+		7852793920AA352D002F4C89 /* AffiniPaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AffiniPaySDK.framework; sourceTree = "<group>"; };
 		7C1FB6E8343E0926E1A3D8F1 /* Pods-SwiftExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A0923F50750FA61805E2B52 /* Pods_SwiftExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27D4FDF09A452ECA12034B3 /* Pods-SwiftExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,7 +105,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6833871CBB281509C6BF4550 /* Pods_SwiftExample.framework in Frameworks */,
-				784B1159204A20A000BB8716 /* AffiniPaySDK.framework in Frameworks */,
+				7852793A20AA352D002F4C89 /* AffiniPaySDK.framework in Frameworks */,
+				02F00316255131C900CE3941 /* AffiniPaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,17 +115,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9133F6EDAD6123AFD4F555 /* Pods_SwiftExampleTests.framework in Frameworks */,
-				784B115C204A227400BB8716 /* AffiniPaySDK.framework in Frameworks */,
+				78446F4820AE3A0A00873242 /* AffiniPaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02F0031B2551373000CE3941 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				02F0031C2551373000CE3941 /* OpenSans-SemiBold.ttf */,
+				02F0031D2551373000CE3941 /* OpenSans-LightItalic.ttf */,
+				02F0031E2551373000CE3941 /* OpenSans-Bold.ttf */,
+				02F0031F2551373000CE3941 /* OpenSans-Regular.ttf */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		33E44255B6B39C3ED7DEDEEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				784B1158204A20A000BB8716 /* AffiniPaySDK.framework */,
+				7852793920AA352D002F4C89 /* AffiniPaySDK.framework */,
+				02F00315255131C900CE3941 /* AffiniPaySDK.framework */,
 				6AD78A738C7F878A30966A01 /* Pods_SwiftExample.framework */,
 				9A0923F50750FA61805E2B52 /* Pods_SwiftExampleTests.framework */,
 			);
@@ -139,8 +167,11 @@
 		7845DA96202BEAF70072D674 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				02F0031B2551373000CE3941 /* Assets */,
 				7845DA97202BEAF80072D674 /* AppDelegate.swift */,
 				7845DABB202BECC00072D674 /* AccountsViewController.swift */,
+				02F003182551324B00CE3941 /* ClientDetailsController.swift */,
+				02F003172551324B00CE3941 /* SignatureViewController.swift */,
 				7845DABD202BECC00072D674 /* MainViewController.swift */,
 				7845DABC202BECC00072D674 /* NetworkController.swift */,
 				7845DABA202BECC00072D674 /* NetworkControllerImpl.swift */,
@@ -185,10 +216,9 @@
 				7845DA91202BEAF70072D674 /* Frameworks */,
 				7845DA92202BEAF70072D674 /* Resources */,
 				8539D65918BB3F1B870BB76E /* [CP] Embed Pods Frameworks */,
-				FB482F4922489DB996A91847 /* [CP] Copy Pods Resources */,
 				7845DD0F202CE8EC0072D674 /* CopyFiles */,
 				780359342048D8CA00BD239C /* ShellScript */,
-				78B01D0420B62B620030C6BE /* ShellScript */,
+				7852793D20AA3D57002F4C89 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -208,7 +238,6 @@
 				7845DAA5202BEAF80072D674 /* Frameworks */,
 				7845DAA6202BEAF80072D674 /* Resources */,
 				20CB6C94EF1111DD055950B3 /* [CP] Embed Pods Frameworks */,
-				30C3742ED279204290EFE6E6 /* [CP] Copy Pods Resources */,
 				7845DD21202D1BD40072D674 /* CopyFiles */,
 			);
 			buildRules = (
@@ -227,7 +256,7 @@
 		7845DA8C202BEAF70072D674 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Affinipay;
 				TargetAttributes = {
@@ -266,8 +295,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				780359362048D98B00BD239C /* .swiftlint.yml in Resources */,
+				02F003222551373000CE3941 /* OpenSans-Bold.ttf in Resources */,
 				7845DAB9202BECAE0072D674 /* LaunchScreen.xib in Resources */,
+				02F003212551373000CE3941 /* OpenSans-LightItalic.ttf in Resources */,
+				02F003202551373000CE3941 /* OpenSans-SemiBold.ttf in Resources */,
 				7845DD12202CE9E40072D674 /* Images.xcassets in Resources */,
+				02F003232551373000CE3941 /* OpenSans-Regular.ttf in Resources */,
 				7845DA9D202BEAF80072D674 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78446F4920AE3A6500873242 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +322,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
@@ -299,22 +333,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		30C3742ED279204290EFE6E6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftExampleTests/Pods-SwiftExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		780359342048D8CA00BD239C /* ShellScript */ = {
@@ -330,7 +349,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		78B01D0420B62B620030C6BE /* ShellScript */ = {
+		7852793D20AA3D57002F4C89 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -349,7 +368,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExample/Pods-SwiftExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftExample/Pods-SwiftExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -358,7 +377,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExample/Pods-SwiftExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftExample/Pods-SwiftExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A99DA858C3D7BD001D8C9B07 /* [CP] Check Pods Manifest.lock */ = {
@@ -397,21 +416,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB482F4922489DB996A91847 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftExample/Pods-SwiftExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -421,7 +425,9 @@
 			files = (
 				7845DAC0202BECC10072D674 /* NetworkController.swift in Sources */,
 				7845DABE202BECC10072D674 /* NetworkControllerImpl.swift in Sources */,
+				02F0031A2551324B00CE3941 /* ClientDetailsController.swift in Sources */,
 				7845DABF202BECC10072D674 /* AccountsViewController.swift in Sources */,
+				02F003192551324B00CE3941 /* SignatureViewController.swift in Sources */,
 				7845DA98202BEAF80072D674 /* AppDelegate.swift in Sources */,
 				7845DAC1202BECC10072D674 /* MainViewController.swift in Sources */,
 			);

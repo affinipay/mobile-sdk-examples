@@ -67,15 +67,16 @@ class Tests: QuickSpec {
                 let publicKey = NSUUID().uuidString
                 let amount = "101"
                 let customerInfo: AFPCustomerInfoResult = AFPCustomerInfoResult()
-                customerInfo.name = name
-                customerInfo.address1 = address1
-                customerInfo.city = city
-                customerInfo.state = state
-                customerInfo.postalCode = postalCode
-                let chargeInput: AFPChargeInput =
-                    AFPChargeInput(publicKey: publicKey,
+                customerInfo.customerInfo = AFPCustomerInfo()
+                customerInfo.customerInfo.name = name
+                customerInfo.customerInfo.address1 = address1
+                customerInfo.customerInfo.city = city
+                customerInfo.customerInfo.state = state
+                customerInfo.customerInfo.postalCode = postalCode
+                let chargeInput: AFPChargeParams =
+                    AFPChargeParams(publicKey: publicKey,
                                    amount: amount,
-                                   customerInfo: customerInfo)
+                                   customerInfo: customerInfo.customerInfo)
                 expect(chargeInput.publicKey) == publicKey
                 expect(chargeInput.amount) == amount
                 expect(chargeInput.customerInfo != nil) == true

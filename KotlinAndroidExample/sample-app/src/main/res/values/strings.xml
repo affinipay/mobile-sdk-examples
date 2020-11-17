@@ -3,4 +3,7 @@
   <string name="get_paid">Get Paid</string>
   <string name="public_key_unknown">Public Key Unknown</string>
   <string name="generic_error_message">Woops. Didn\'t work.</string>
+  <string name="card_entry_cancel_dialog_title">Are you sure you want to cancel? All progress will be lost.</string>
+  <string name="card_entry_cancel_dialog_pos_button">Yes, Cancel</string>
+  <string name="card_entry_cancel_dialog_neg_button">No, Go Back</string>
 </resources>

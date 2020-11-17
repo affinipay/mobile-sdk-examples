@@ -1,33 +1,37 @@
 package com.affinipay
 
-import android.app.Fragment
-import android.content.Intent
+import android.annotation.SuppressLint
+import android.content.DialogInterface
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.affinipay.cardreadersdk.R
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.affinipay.cardreadersdk.ViewProvider
-import com.affinipay.cardreadersdk.amount.AmountRequester
-import com.affinipay.cardreadersdk.amount.AmountResult
 import com.affinipay.cardreadersdk.charge.*
-import com.affinipay.cardreadersdk.customerinfo.CustomerInfoParams
 import com.affinipay.cardreadersdk.customerinfo.CustomerInfoRequester
-import com.affinipay.cardreadersdk.customerinfo.CustomerInfoResult
-import com.affinipay.cardreadersdk.customerinfo.CustomerInfoType
-import com.affinipay.cardreadersdk.signature.SignatureFragment
+import com.affinipay.cardreadersdk.customerinfo.TokenizationCompleteParams
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_container_layout.*
 import javax.inject.Inject
 
-
-
-class ContainerActivity : AppCompatActivity(), Navigator, AmountRequester, ChargeRequester, PublicKeyRequester, CustomerInfoRequester {
+class ContainerActivity : AppCompatActivity(), Navigator, PublicKeyRequester, ChargeRequester, CustomerInfoRequester, CardEntryCallbacks {
 
   private val compositeDisposable = CompositeDisposable()
   private var publicKey: String? = null
   private var accountId: String? = null
-  private var amount: String? = null
-  lateinit private var fragment:Fragment
+  private var accountName: String? = null
+  private var disableCardReader: Boolean? = false
+  private var trustAccount: Boolean? = false
+  private var requireCvv: Boolean? = false
+  private var amount: String? = "53"
+  private var fragment: Fragment? = null
 
   @Inject
   lateinit var chargeModel: ChargeModel
@@ -36,143 +40,176 @@ class ContainerActivity : AppCompatActivity(), Navigator, AmountRequester, Charg
     super.onCreate(savedInstanceState)
     App[this].component.inject(this)
     setContentView(R.layout.activity_container_layout)
-
   }
 
+  @SuppressLint("SourceLockedOrientationActivity")
+  override fun onConfigurationChanged(newConfig: Configuration) {
+    super.onConfigurationChanged(newConfig)
+
+    var newView: Fragment? = null
+    newView = supportFragmentManager.findFragmentByTag("currentFragment")
+      val fragmentTransaction = supportFragmentManager.beginTransaction()
+      fragmentTransaction.detach(newView!!);
+      fragmentTransaction.attach(newView);
+      fragmentTransaction.commit();
+  }
 
   override fun onStart() {
     super.onStart()
-    if (fragmentManager.backStackEntryCount == 0) {
+
+    if (supportFragmentManager.backStackEntryCount == 0) {
       goToScreen(LoginAccountView())
     }
-  }
 
-  override fun onSaveInstanceState(outState: Bundle?) {
-    super.onSaveInstanceState(outState)
-
-    if(!publicKey.isNullOrEmpty()) {
-      outState!!.putString("public_key", publicKey)
+    ivBack.setOnClickListener {
+      onBackPressed()
     }
 
-    if (!accountId.isNullOrEmpty()) {
-      outState!!.putString("accountId", accountId)
+    tvCancel.setOnClickListener {
+      showDialog()
     }
-
-    if (!amount.isNullOrEmpty()) {
-      outState!!.putString("amount", amount)
-    }
-
   }
 
-  override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-    super.onRestoreInstanceState(savedInstanceState)
-
-    publicKey = savedInstanceState.getString("public_key")
-    amount = savedInstanceState.getString("amount")
-    accountId = savedInstanceState.getString("accountId")
-
-    fragment = fragmentManager.findFragmentByTag("currentFragment")
-  }
-
-  override fun onResume() {
-    super.onResume()
-
-  }
-
-  override fun onPause() {
+  override fun onStop() {
     compositeDisposable.dispose()
-    super.onPause()
+    super.onStop()
   }
 
   override fun onBackPressed() {
-    if (fragmentManager.backStackEntryCount > 1) {
-      fragmentManager.popBackStackImmediate()
+    if (supportFragmentManager.backStackEntryCount > 1) {
+      if(supportFragmentManager.backStackEntryCount == 3) {
+        topContainer.visibility = View.VISIBLE
+      } else {
+        topContainer.visibility = View.GONE
+      }
+      supportFragmentManager.popBackStackImmediate()
     } else {
       finish()
     }
   }
 
-  private fun goToCustomerInfoScreen() {
-    val requiredFieldTypes = arrayListOf(CustomerInfoType.EMAIL, CustomerInfoType.POSTAL_CODE, CustomerInfoType.ADDRESS1)
-    val params = CustomerInfoParams(requiredFieldTypes)
-    goToScreen(ViewProvider.getCustomerInfoView(params))
-  }
+  @SuppressLint("ResourceAsColor")
+  private fun showDialog(){
+    val builder = this?.let {
+      AlertDialog.Builder(it)
+    }
+    builder.setMessage(getString(R.string.card_entry_cancel_dialog_title))
+    builder.setCancelable(false)
 
-  override fun goToAmountSelectionScreen() {
-    goToScreen(ViewProvider.getAmountSelectionView())
-  }
+    builder.setPositiveButton(getString(R.string.card_entry_cancel_dialog_pos_button)) { di: DialogInterface, _: Int ->
+      di.dismiss()
+      onCancelButtonPress()
+    }
 
+    builder.setNegativeButton(getString(R.string.card_entry_cancel_dialog_neg_button)) { di: DialogInterface, _: Int ->
+      di.dismiss()
+    }
+    val alert = builder.create()
+    alert.show()
+
+    alert.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(Color.WHITE)
+    alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextAppearance(R.style.PositiveAlertTextStyle)
+    alert.getButton(AlertDialog.BUTTON_NEGATIVE).setBackgroundColor(Color.WHITE)
+    alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextAppearance(R.style.NegativeAlertTextStyle)
+  }
   private fun goToScreen(newView: Fragment) {
-    val fragmentTransaction = fragmentManager.beginTransaction()
+    val fragmentTransaction = supportFragmentManager.beginTransaction()
     fragmentTransaction.replace(R.id.fragment_container, newView, "currentFragment").addToBackStack(newView.tag)
     fragmentTransaction.commit()
   }
 
-  override fun onAccountChosen(publicKey: String, accountId: String) {
+  override fun onAccountChosen(publicKey: String, accountId:String, accountName: String, trustAccount:Boolean) {
     this.publicKey = publicKey
     this.accountId = accountId
+    this.accountName = accountName
+    this.trustAccount = trustAccount
   }
 
-  override fun onAmountReceived(amountResult: AmountResult) {
-    amount = amountResult.amount
+  override fun goToCardEntryScreen() {
+    topContainer.visibility = View.VISIBLE
+    fragment = ViewProvider.getCardEntryView(this,TokenizationInitParams(publicKey as String,
+            amount as String, accountName as String, disableCardReader as Boolean, trustAccount as Boolean, requireCvv as Boolean))
+    goToScreen(fragment as CardEntryFragment)
+  }
+
+  override fun onReturnCardData(typeOfCharge: CardResult) {
     goToCustomerInfoScreen()
   }
 
-  override fun onCustomerInfoReceived(customerInfoResult: CustomerInfoResult) {
-    fragment = ViewProvider.getCardEntryView(ChargeParams(customerInfoResult.customerInfo, publicKey as String, amount as String))
-    goToScreen(fragment)
+  override fun onCustomerInfoReceived(tokenizationCompleteParams: TokenizationCompleteParams) {
+    val cardEntryHelper = CardEntryHelper(this)
+    cardEntryHelper.startTokenization(TokenizationInitParams(publicKey as String, amount as String,
+            accountName as String, disableCardReader as Boolean, trustAccount as Boolean, requireCvv as Boolean), tokenizationCompleteParams)
+  }
+
+  private fun goToCustomerInfoScreen() {
+    topContainer.visibility = View.GONE
+    goToScreen(ViewProvider.getCustomerInfoView())
   }
 
   override fun onManualChargeDataReceived(manualChargeResult: ChargeResult) {
-    compositeDisposable.add(chargeModel.makeCharge(publicKey as String, accountId as String, manualChargeResult.oneTimeToken, manualChargeResult.amount).subscribeOn
+    Log.d("ContainerActivity", "onManualChargeDataReceived${manualChargeResult.oneTimeToken}")
+    compositeDisposable.add(chargeModel.makeCharge(publicKey as String, accountId as String, manualChargeResult.oneTimeToken,
+            manualChargeResult.amount).subscribeOn
     (Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread()).subscribe({
-      charge ->
-      (fragment as CardEntryFragment).completionCallback(true)
-      handleChargeCompletedReceipt(charge)
-    }, {
-      error ->
-      (fragment as CardEntryFragment).completionCallback(false)
-      print(error.message)
-    }))
+            .observeOn(AndroidSchedulers.mainThread()).subscribe({ charge ->
+              (fragment as CardEntryFragment).completionCallback(true)
+            }, { error ->
+              (fragment as CardEntryFragment).completionCallback(false)
+              Toast.makeText(this,error.message,Toast.LENGTH_LONG).show()
+              print(error.message)
+            }))
   }
 
   override fun onSwipeChargeDataReceived(swipeChargeResult: ChargeResult) {
+    Log.d("ContainerActivity", "onSwipeChargeDataReceived${swipeChargeResult.oneTimeToken}")
     compositeDisposable.add(chargeModel.makeCharge(publicKey as String, accountId as String, swipeChargeResult.oneTimeToken, swipeChargeResult.amount).subscribeOn
     (Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread()).subscribe({
-      charge ->
-      (fragment as CardEntryFragment).completionCallback(true)
-      handleChargeCompletedReceipt(charge)
-    }, {
-      error ->
-      (fragment as CardEntryFragment).completionCallback(false)
-      print(error.message)
-    }))
+            .observeOn(AndroidSchedulers.mainThread()).subscribe({ charge ->
+              (fragment as CardEntryFragment).completionCallback(true)
+            }, { error ->
+              (fragment as CardEntryFragment).completionCallback(false)
+              Toast.makeText(this,error.message,Toast.LENGTH_LONG).show()
+              print(error.message)
+            }))
   }
 
   override fun onEMVChargeDataReceived(emvChargeResult: ChargeResult) {
+    Log.d("ContainerActivity", "onEMVChargeDataReceived${emvChargeResult.oneTimeToken}")
     compositeDisposable.add(chargeModel.makeEMVCharge(publicKey as String, accountId as String, emvChargeResult.oneTimeToken, emvChargeResult.amount, emvChargeResult
-        .paymentDataSource,
-        emvChargeResult.pointOfSale as PointOfSale).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
-      charge ->
+            .paymentDataSource,
+            emvChargeResult.pointOfSale as PointOfSale).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({ charge ->
       (fragment as CardEntryFragment).completionCallback(true)
-      handleChargeCompletedReceipt(charge)
-    }, {
-      error ->
+    }, { error ->
       (fragment as CardEntryFragment).completionCallback(false)
+      Toast.makeText(this,error.message,Toast.LENGTH_LONG).show()
       print(error.message)
     }))
   }
 
-  fun handleChargeCompletedReceipt(charge: Charge) {
-    val chargeId = charge.chargeDetails?.id
-    val signIntent = Intent(this, SignatureActivity::class.java)
-    signIntent.putExtra(SignatureActivity.ARG_PUBLIC_KEY, publicKey)
-    signIntent.putExtra(SignatureActivity.ARG_ACCOUNT_ID, accountId)
-    signIntent.putExtra(SignatureActivity.ARG_CHARGE_ID, chargeId)
-    signIntent.putExtra(SignatureFragment.ARG_AMOUNT, amount)
-    startActivity(signIntent)
+  override fun onReset() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun onDismiss() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun onComplete() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun onBackButtonPress() {
+    if(supportFragmentManager.backStackEntryCount>1){
+      supportFragmentManager.popBackStack()
+    }
+  }
+
+  override fun onCancelButtonPress() {
+    if(supportFragmentManager.backStackEntryCount>1){
+      topContainer.visibility = View.GONE
+      supportFragmentManager.popBackStack()
+    }
   }
 
 }

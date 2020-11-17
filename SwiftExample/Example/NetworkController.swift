@@ -3,6 +3,8 @@ import Foundation
 protocol NetworkController {
     // swiftlint:disable line_length
 
+    func getGatewayBase() -> String?
+    
     func apiPost(_ endpoint: String, _ publicKey: String, _ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void )
 
     func apiGet(_ endpoint: String, _ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void )

@@ -18,6 +18,20 @@ public class NetworkControllerImpl: NetworkController {
         return ""
     }
 
+    func getGatewayBase() -> String? {
+        var myDict: NSDictionary?
+        let bundle = Bundle(for: type(of: self))
+        if let path = bundle.path(forResource: "Info", ofType: "plist") {
+            myDict = NSDictionary(contentsOfFile: path)
+        }
+        if let dict = myDict {
+            if let affinipayGatewayUrl = dict["affinipayGatewayUrl"] as? String {
+                return affinipayGatewayUrl
+            }
+        }
+        return nil
+    }
+    
     // MARK: - Network calls
     func createCharge(_ chargetokenId: String?, _ accountId: String?, _ amount: Int, _ completion: @escaping ((_ result: [String: Any]?, _ error: Error?) -> Void)) {
         let url = URL(string: getUrlBase() + "/api/v1/charge")!
